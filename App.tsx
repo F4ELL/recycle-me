@@ -6,6 +6,7 @@ import { Login } from './src/screens/Login';
 
 import theme from './src/theme'
 import { Loading } from './src/components/Loading';
+import { SignUp } from './src/screens/SignUp';
 
 export default function App() {
   const [ fontsLoaded ] = useFonts({ Roboto_400Regular, Roboto_700Bold }) 
@@ -17,7 +18,7 @@ export default function App() {
         backgroundColor='transparent'
         translucent
       />
-      { fontsLoaded ? <Login /> : <Loading /> }
+      { fontsLoaded ? <SignUp /> : <Loading /> }
     </ThemeProvider>    
   );
 }

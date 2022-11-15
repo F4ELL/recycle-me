@@ -1,4 +1,3 @@
-import { TouchableOpacity, Text } from 'react-native';
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { Highlight } from '../../components/Highlight';
