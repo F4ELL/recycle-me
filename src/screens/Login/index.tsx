@@ -21,8 +21,9 @@ export function Login() {
       />
       
       <Input 
+        secureTextEntry
         placeholder='Password'
-        style={{ marginBottom: 20 }}
+        style={{ marginBottom: 32 }}
       />
       
       <Button 
