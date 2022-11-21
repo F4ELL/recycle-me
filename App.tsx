@@ -10,6 +10,7 @@ import { SignUp } from './src/screens/SignUp';
 import { Occupation } from './src/screens/Occupation';
 import { HomeCollector } from './src/screens/HomeCollector';
 import { StatisticsUser } from './src/screens/StatisticsUser';
+import { StatisticsCollector } from './src/screens/StatisticsCollector';
 
 export default function App() {
   const [ fontsLoaded ] = useFonts({ Roboto_400Regular, Roboto_700Bold }) 
@@ -21,7 +22,7 @@ export default function App() {
         backgroundColor='transparent'
         translucent
       />
-      { fontsLoaded ? <StatisticsUser /> : <Loading /> }
+      { fontsLoaded ? <StatisticsCollector /> : <Loading /> }
     </ThemeProvider>    
   );
 }
