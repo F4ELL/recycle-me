@@ -1,16 +1,19 @@
+import { Recycle } from "phosphor-react-native";
 import { TouchableOpacityProps } from "react-native";
-import { Container, LocaleButton, Icon } from "./styles";
+import { useTheme } from "styled-components";
+import { Container } from "./styles";
 
 export function LocationButton({ ...rest }: TouchableOpacityProps) {
+    const { COLORS } = useTheme()
+
     return (
-        <Container>
-            <LocaleButton
-                {...rest}
-            >
-                <Icon 
-                    name='recycling'
-                />
-            </LocaleButton>
+        <Container
+            {...rest}
+        >
+            <Recycle 
+                size={96}
+                color={COLORS.GRAY_500}
+            />
         </Container>
     )
 }

@@ -1,4 +1,4 @@
-import { Container } from "./styles";
+import { ButtonArea, Container } from "./styles";
 import { Highlight } from "../../components/Highlight";
 import { Header } from "../../components/Header";
 import { SubHighlight } from "../../components/SubHighlight";
@@ -22,7 +22,11 @@ export function HomeUser() {
                 subtitle='clique no botão abaixo para enviar a localização aos coletores'
             />
 
-            <LocationButton />
+            <ButtonArea>
+                <LocationButton 
+                    style={{ marginTop: 24 }}
+                />
+            </ButtonArea>
 
             <Logout />
         </Container>
