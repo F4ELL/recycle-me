@@ -10,7 +10,7 @@ export function Occupation() {
     const navigation = useNavigation()
 
     function handleHomeUser() {
-        navigation.navigate('homecollector')
+        navigation.navigate('homeuser')
     }
 
     return (

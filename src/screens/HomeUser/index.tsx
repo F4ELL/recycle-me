@@ -39,7 +39,7 @@ export function HomeUser() {
             <InfoCard 
                 title='Histórico'
                 iconName='timer'
-                style={{ marginTop: 48 }}
+                style={{ marginTop: 24 }}
             />
 
             <InfoCard 
