@@ -8,8 +8,6 @@ export const Container = styled.View`
 ` 
 
 export const SignUpButton = styled(TouchableOpacity)`
-    flex: 1;
-
     margin-top: 12px;
 `
 
