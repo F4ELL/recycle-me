@@ -2,17 +2,12 @@ import { StatusBar } from 'react-native'
 import { ThemeProvider } from 'styled-components'
 import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto'
 
-import { Login } from './src/screens/Login';
+import { Loading } from './src/components/Loading';
 
 import theme from './src/theme'
-import { Loading } from './src/components/Loading';
-import { SignUp } from './src/screens/SignUp';
-import { Occupation } from './src/screens/Occupation';
-import { HomeUser } from './src/screens/HomeUser';
-import { StatisticsUser } from './src/screens/StatisticsUser';
-import { StatisticsCollector } from './src/screens/StatisticsCollector';
-import { Points } from './src/screens/Points';
-import { HomeCollector } from './src/screens/HomeCollector';
+
+import { Routes } from './src/routes';
+
 
 export default function App() {
   const [ fontsLoaded ] = useFonts({ Roboto_400Regular, Roboto_700Bold }) 
@@ -24,7 +19,7 @@ export default function App() {
         backgroundColor='transparent'
         translucent
       />
-      { fontsLoaded ? <HomeCollector /> : <Loading /> }
+      { fontsLoaded ? <Routes /> : <Loading /> }
     </ThemeProvider>    
   );
 }
