@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native'
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { Highlight } from '../../components/Highlight';
@@ -5,6 +6,13 @@ import { Input } from '../../components/Input';
 import { Container, SignUpButton, SignUpText } from './styles';
 
 export function Login() {
+
+  const navigation = useNavigation()
+
+  function handleSignUp() {
+    navigation.navigate('signup')
+  }
+
   return (
     <Container>
       <Header />
