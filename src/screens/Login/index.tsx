@@ -6,11 +6,14 @@ import { Input } from '../../components/Input';
 import { Container, SignUpButton, SignUpText } from './styles';
 
 export function Login() {
-
   const navigation = useNavigation()
 
   function handleSignUp() {
     navigation.navigate('signup')
+  }
+
+  function handleNewUser() {
+    navigation.navigate('occupation')
   }
 
   return (
@@ -35,9 +38,12 @@ export function Login() {
       
       <Button 
         title='Entrar'
+        onPress={handleNewUser}
       />
 
-      <SignUpButton>
+      <SignUpButton
+        onPress={handleSignUp}
+      >
         <SignUpText>
           Ainda não possui uma conta?  Cadastre-se
         </SignUpText>

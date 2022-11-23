@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native'
 import { Header } from "../../components/Header";
 import { Container, Title, TitleArea } from "./styles";
 import { Highlight } from "../../components/Highlight";
@@ -6,6 +7,12 @@ import { Button } from "../../components/Button";
 import { Logout } from "../../components/Logout";
 
 export function Occupation() {
+    const navigation = useNavigation()
+
+    function handleHomeUser() {
+        navigation.navigate('homecollector')
+    }
+
     return (
         <Container>
             <Header />
@@ -34,6 +41,7 @@ export function Occupation() {
 
             <Button 
                 title='Seguir'
+                onPress={handleHomeUser}
                 style={{ marginTop: 32 }}
             />
 

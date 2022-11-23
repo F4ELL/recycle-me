@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native'
 import { ButtonArea, Container } from "./styles";
 import { Highlight } from "../../components/Highlight";
 import { Header } from "../../components/Header";
@@ -7,6 +8,12 @@ import { LocationButton } from "../../components/LocationButton";
 import { InfoCard } from "../../components/InfoCard";
 
 export function HomeUser() {
+    const navigation = useNavigation()
+
+    function handleStatisticsUser() {
+        navigation.navigate('statisticsuser')
+    }
+
     return (
         <Container>
             <Header 
@@ -38,6 +45,7 @@ export function HomeUser() {
             <InfoCard 
                 title='Estatísticas'
                 iconName='insights'
+                onPress={handleStatisticsUser}
             />
 
             <Logout />

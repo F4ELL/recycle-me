@@ -32,8 +32,6 @@ export function StatisticsCollector() {
                 subtitle='mais coletas de lixo reciclável em um dia'
                 style={{ marginTop: 12 }}
             />
-
-            <Logout />
         </Container>
     )
 }
