@@ -12,6 +12,7 @@ import { HomeUser } from './src/screens/HomeUser';
 import { StatisticsUser } from './src/screens/StatisticsUser';
 import { StatisticsCollector } from './src/screens/StatisticsCollector';
 import { Points } from './src/screens/Points';
+import { HomeCollector } from './src/screens/HomeCollector';
 
 export default function App() {
   const [ fontsLoaded ] = useFonts({ Roboto_400Regular, Roboto_700Bold }) 
@@ -23,7 +24,7 @@ export default function App() {
         backgroundColor='transparent'
         translucent
       />
-      { fontsLoaded ? <Points /> : <Loading /> }
+      { fontsLoaded ? <HomeCollector /> : <Loading /> }
     </ThemeProvider>    
   );
 }
