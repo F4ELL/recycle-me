@@ -23,7 +23,7 @@ export default function App() {
         backgroundColor='transparent'
         translucent
       />
-      { fontsLoaded ? <HomeUser /> : <Loading /> }
+      { fontsLoaded ? <Points /> : <Loading /> }
     </ThemeProvider>    
   );
 }

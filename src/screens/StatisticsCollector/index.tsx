@@ -23,7 +23,13 @@ export function StatisticsCollector() {
 
             <Record 
                 title='15'
-                subtitle='lixos recicláveis depositados'
+                subtitle='coletas de lixo reciclável'
+                style={{ marginTop: 12 }}
+            />
+
+            <Record 
+                title='5'
+                subtitle='mais coletas de lixo reciclável em um dia'
                 style={{ marginTop: 12 }}
             />
 

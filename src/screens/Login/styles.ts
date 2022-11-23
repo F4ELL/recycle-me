@@ -14,7 +14,7 @@ export const SignUpButton = styled(TouchableOpacity)`
 `
 
 export const SignUpText = styled.Text`
-    color: ${({ theme }) => theme.COLORS.WHITE};
+    color: ${({ theme }) => theme.COLORS.GRAY_300};
     font-size: ${({ theme }) => theme.FONT_SIZE.SM}px;
     
     text-align: center;

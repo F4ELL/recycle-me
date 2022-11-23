@@ -4,6 +4,7 @@ import { Header } from "../../components/Header";
 import { SubHighlight } from "../../components/SubHighlight";
 import { Logout } from "../../components/Logout";
 import { LocationButton } from "../../components/LocationButton";
+import { InfoCard } from "../../components/InfoCard";
 
 export function HomeUser() {
     return (
@@ -27,6 +28,17 @@ export function HomeUser() {
                     style={{ marginTop: 24 }}
                 />
             </ButtonArea>
+
+            <InfoCard 
+                title='Histórico'
+                iconName='timer'
+                style={{ marginTop: 48 }}
+            />
+
+            <InfoCard 
+                title='Estatísticas'
+                iconName='insights'
+            />
 
             <Logout />
         </Container>

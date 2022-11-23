@@ -37,8 +37,6 @@ export function Occupation() {
                 style={{ marginTop: 32 }}
             />
 
-            <Logout />
-
         </Container>
     )
 }

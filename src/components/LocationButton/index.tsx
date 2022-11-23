@@ -12,7 +12,7 @@ export function LocationButton({ ...rest }: TouchableOpacityProps) {
         >
             <Recycle 
                 size={96}
-                color={COLORS.GRAY_500}
+                color={COLORS.GREEN_500}
             />
         </Container>
     )
