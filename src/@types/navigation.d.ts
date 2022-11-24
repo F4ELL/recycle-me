@@ -5,6 +5,7 @@ export declare global {
             signup: undefined
             occupation: undefined
             homeuser: undefined
+            historic: undefined
             statisticsuser: undefined
             homecollector: undefined
             points: undefined

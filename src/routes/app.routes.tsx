@@ -8,6 +8,7 @@ import { StatisticsUser } from '../screens/StatisticsUser'
 import { HomeCollector } from '../screens/HomeCollector'
 import { Points } from '../screens/Points'
 import { StatisticsCollector } from '../screens/StatisticsCollector'
+import { Historic } from '../screens/Historic'
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
@@ -42,6 +43,11 @@ export function AppRoutes() {
             <Screen 
                 name='homecollector'
                 component={HomeCollector}
+            />
+
+            <Screen 
+                name='historic'
+                component={Historic}
             />
 
             <Screen 

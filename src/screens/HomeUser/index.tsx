@@ -14,6 +14,10 @@ export function HomeUser() {
         navigation.navigate('statisticsuser')
     }
 
+    function handleHistoric() {
+        navigation.navigate('historic')
+    }
+
     return (
         <Container>
             <Header 
@@ -39,6 +43,7 @@ export function HomeUser() {
             <InfoCard 
                 title='Histórico'
                 iconName='timer'
+                onPress={handleHistoric}
                 style={{ marginTop: 24 }}
             />
 
