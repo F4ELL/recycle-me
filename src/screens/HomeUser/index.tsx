@@ -1,13 +1,18 @@
 import { useNavigation } from '@react-navigation/native'
-import { ButtonArea, Container } from "./styles";
+import { ButtonArea, Container, ModalArea } from "./styles";
 import { Highlight } from "../../components/Highlight";
 import { Header } from "../../components/Header";
 import { SubHighlight } from "../../components/SubHighlight";
 import { Logout } from "../../components/Logout";
 import { LocationButton } from "../../components/LocationButton";
 import { InfoCard } from "../../components/InfoCard";
+import { Modal } from 'react-native'
+import { useState } from 'react'
+import { ModalItem } from '../../components/ModalItem';
 
 export function HomeUser() {
+    const [ modalVisible, setModalVisible ] = useState(false)
+
     const navigation = useNavigation()
 
     function handleStatisticsUser() {
@@ -16,6 +21,10 @@ export function HomeUser() {
 
     function handleHistoric() {
         navigation.navigate('historic')
+    }
+
+    function toogleModal() {
+        setModalVisible(!modalVisible)
     }
 
     return (
@@ -36,9 +45,25 @@ export function HomeUser() {
 
             <ButtonArea>
                 <LocationButton 
+                    onPress={toogleModal}
                     style={{ marginTop: 24 }}
                 />
             </ButtonArea>
+
+
+            <Modal
+                animationType='slide'
+                transparent
+                visible={modalVisible}
+                onRequestClose={toogleModal}                
+            >
+                <ModalArea>
+                    <ModalItem 
+                        toogleModal={toogleModal}
+                    />
+                </ModalArea>
+            </Modal>
+
 
             <InfoCard 
                 title='Histórico'
