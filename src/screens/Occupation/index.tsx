@@ -4,9 +4,11 @@ import { Container, Title, TitleArea } from "./styles";
 import { Highlight } from "../../components/Highlight";
 import { OccupationButton } from "../../components/OccupationButton";
 import { Button } from "../../components/Button";
-import { Logout } from "../../components/Logout";
+import { useState } from 'react';
 
 export function Occupation() {
+    const [ type, setType ] = useState('depositant')
+
     const navigation = useNavigation()
 
     function handleHomeUser() {
@@ -32,11 +34,15 @@ export function Occupation() {
             <OccupationButton 
                 title='Depositar'
                 style={{ marginTop: 32 }}
+                onPress={ () => setType('depositant') }
+                isActive={ type === 'depositant' }
             />
 
             <OccupationButton 
                 title='Coletar'
                 style={{ marginTop: 12 }}
+                onPress={ () => setType('collector') }
+                isActive={ type === 'collector' }
             />
 
             <Button 

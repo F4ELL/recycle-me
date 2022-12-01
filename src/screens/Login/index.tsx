@@ -26,7 +26,7 @@ export function Login() {
       />
       
       <Input 
-        placeholder='Username'
+        placeholder='Email'
         style={{marginBottom: 12}}
       />
       
