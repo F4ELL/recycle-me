@@ -12,7 +12,11 @@ export function Occupation() {
     const navigation = useNavigation()
 
     function handleHomeUser() {
-        navigation.navigate('homeuser')
+        if(type === 'depositant') {
+            navigation.navigate('homeuser')
+        } else {
+            navigation.navigate('homecollector')
+        }
     }
 
     return (

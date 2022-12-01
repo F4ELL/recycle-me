@@ -11,7 +11,8 @@ export const Container = styled(TouchableOpacity)<ButtonOccupationProps>`
     min-height: 56px;
     max-height: 56px;    
 
-    background-color: ${({ theme, isActive }) => isActive ? theme.COLORS.GRAY_500 : theme.COLORS.GRAY_700};
+    background-color: ${({ theme }) => theme.COLORS.GRAY_700};
+    border: 1px solid ${({ theme, isActive }) => isActive ? theme.COLORS.GREEN_500 : 'transparent'};
 
     border-radius: 6px;
 
