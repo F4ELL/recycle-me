@@ -4,6 +4,7 @@ import styled from 'styled-components/native'
 
 export const Container = styled(TouchableOpacity)`
     width: 32px;
+    height: 32px;
 
     position: absolute;
     top: 24px;

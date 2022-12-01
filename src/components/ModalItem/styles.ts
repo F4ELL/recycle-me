@@ -12,3 +12,22 @@ export const Container = styled.View`
     padding: 32px 24px 24px;
     position: relative;
 `
+
+export const TextWarning = styled.Text`
+    width: 100%;
+
+    color: ${({ theme }) => theme.COLORS.WHITE};
+    font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+    font-size: ${({ theme }) => theme.FONT_SIZE.LG}px;
+
+    text-align: center;
+
+    margin-top: 12px;
+`
+
+export const ModalButtonsArea = styled.View`
+    flex-direction: row;
+
+    margin-top: 24px;
+    margin-bottom: 24px;
+`

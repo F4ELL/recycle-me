@@ -35,7 +35,7 @@ export function SignUp() {
             />
 
             <Input 
-                placeholder='Username'
+                placeholder='Email'
                 style={{ marginBottom: 12 }}
             />
 
