@@ -3,8 +3,12 @@ import { Highlight } from "../../components/Highlight";
 import { HistoricItem } from "../../components/HistoricItem";
 import { SubHighlight } from "../../components/SubHighlight";
 import { Container } from "./styles";
+import { FlatList } from 'react-native'
+import { useState } from "react";
 
 export function Historic() {
+    const [ dates, setDates ] = useState<string[]>(['04/11/2022', '05/11/2022', '06/11/2022', '07/11/2022', '08/11/2022', '09/11/2022', '10/11/2022'])
+
     return (
         <Container>
             <Header 
@@ -20,17 +24,16 @@ export function Historic() {
                 title='Histórico'
             />
 
-            <HistoricItem 
-                title='04/11/2022'
-            />
-            <HistoricItem 
-                title='05/11/2022'
-            />
-            <HistoricItem 
-                title='06/11/2022'
-            />
-            <HistoricItem 
-                title='07/11/2022'
+            <FlatList 
+                data={dates}
+                keyExtractor={item => item}
+                renderItem={({ item }) => (
+                    <HistoricItem 
+                        title={item}
+                    />
+                )}
+                style={{ marginTop: 12 }}
+                showsVerticalScrollIndicator={false}
             />
 
         </Container>

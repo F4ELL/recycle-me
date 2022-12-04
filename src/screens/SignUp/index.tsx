@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
 import { Highlight } from "../../components/Highlight";
@@ -5,6 +6,12 @@ import { Input } from "../../components/Input";
 import { Container, Title, TitleArea } from "./styles";
 
 export function SignUp() {
+    const navigation = useNavigation()
+
+    function handleToLogin() {
+        navigation.navigate('login')
+    }
+
     return (
         <Container>
             <Header 
@@ -47,6 +54,7 @@ export function SignUp() {
 
             <Button 
                 title='Cadastrar'
+                onPress={handleToLogin}
                 style={{ marginTop: 32 }}
             />
         </Container>

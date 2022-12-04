@@ -4,7 +4,7 @@ export function ButtonIcon() {
     return (
         <Container>
             <Icon 
-                name='close'
+                name='done'
             />
         </Container>
     )
