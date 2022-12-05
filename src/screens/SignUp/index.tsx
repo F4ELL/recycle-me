@@ -19,6 +19,7 @@ export function SignUp() {
         if(name.length === 0 || address.length === 0 || email.length === 0 || password.length === 0) {
             Alert.alert('Preencha todos os campos!')
         } else {
+            Alert.alert('Usuário cadastrado com sucesso!')
             navigation.navigate('login')
         }
     }
