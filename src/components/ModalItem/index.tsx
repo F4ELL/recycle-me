@@ -51,6 +51,7 @@ export function ModalItem({ toogleModal, ...rest }: Props) {
 
             <Button 
                 title="Enviar localização"
+                onPress={hiddenModal}
             />
         </Container>
     )

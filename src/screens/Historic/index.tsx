@@ -5,9 +5,10 @@ import { SubHighlight } from "../../components/SubHighlight";
 import { Container } from "./styles";
 import { FlatList } from 'react-native'
 import { useState } from "react";
+import { EmptyList } from "../../components/EmptyList";
 
 export function Historic() {
-    const [ dates, setDates ] = useState<string[]>(['04/11/2022', '05/11/2022', '06/11/2022', '07/11/2022', '08/11/2022', '09/11/2022', '10/11/2022'])
+    const [ dates, setDates ] = useState<string[]>([])
 
     return (
         <Container>
@@ -34,6 +35,12 @@ export function Historic() {
                 )}
                 style={{ marginTop: 12 }}
                 showsVerticalScrollIndicator={false}
+                contentContainerStyle={dates.length === 0 && { flex: 1 }}
+                ListEmptyComponent={() => (
+                    <EmptyList 
+                        message='Seu histórico de depósitos está vazio! Que tal reciclar seu lixo agora?'
+                    />
+                )}
             />
 
         </Container>
