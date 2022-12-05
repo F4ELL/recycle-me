@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import { Container, Title } from "./styles";
 import { SignIn } from 'phosphor-react-native'
+import { Alert } from 'react-native';
 
 export function Logout() {
     const navigation = useNavigation()
@@ -9,9 +10,21 @@ export function Logout() {
         navigation.navigate('login')
     }
 
+    function handleLogoutMessage() {
+        Alert.alert('Logout', 'Tem certeza que deseja sair?', [
+            {
+                text: 'Sim',
+                onPress: () => handleLogout()
+            },
+            {
+                text: 'Não',
+            }
+        ])
+    }
+
     return (
         <Container
-            onPress={handleLogout}
+            onPress={handleLogoutMessage}
         >
             <Title>
                 logout
