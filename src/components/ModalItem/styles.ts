@@ -4,7 +4,7 @@ import styled from 'styled-components/native'
 
 export const Container = styled.View`
     width: 80%;
-    height: 300px;
+    height: 350px;
 
     background-color: ${({ theme }) => theme.COLORS.GRAY_600};
     border-radius: 16px;
@@ -18,11 +18,11 @@ export const TextWarning = styled.Text`
 
     color: ${({ theme }) => theme.COLORS.WHITE};
     font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
-    font-size: ${({ theme }) => theme.FONT_SIZE.LG}px;
+    font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
 
     text-align: center;
 
-    margin-top: 12px;
+    margin-top: 32px;
 `
 
 export const ModalButtonsArea = styled.View`

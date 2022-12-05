@@ -8,7 +8,7 @@ import { useState } from "react";
 import { EmptyList } from "../../components/EmptyList";
 
 export function Historic() {
-    const [ dates, setDates ] = useState<string[]>([])
+    const [ dates, setDates ] = useState<string[]>(['01/11/2022', '16/11/2022'])
 
     return (
         <Container>
