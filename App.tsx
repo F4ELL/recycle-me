@@ -7,6 +7,7 @@ import { Loading } from './src/components/Loading';
 import theme from './src/theme'
 
 import { Routes } from './src/routes';
+import { UserContextProvider } from './src/contexts/auth';
 
 
 export default function App() {
@@ -14,12 +15,14 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar
-        barStyle='light-content'
-        backgroundColor='transparent'
-        translucent
-      />
-      { fontsLoaded ? <Routes /> : <Loading /> }
+      <UserContextProvider>
+        <StatusBar
+          barStyle='light-content'
+          backgroundColor='transparent'
+          translucent
+        />
+        { fontsLoaded ? <Routes /> : <Loading /> }
+      </UserContextProvider>
     </ThemeProvider>    
   );
 }

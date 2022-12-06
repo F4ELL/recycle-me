@@ -4,11 +4,44 @@ import { Header } from "../../components/Header";
 import { Highlight } from "../../components/Highlight";
 import { SubHighlight } from "../../components/SubHighlight";
 import { Container } from "./styles";
-import { FlatList } from 'react-native'
+import { Alert, FlatList } from 'react-native'
 import { EmptyList } from "../../components/EmptyList";
+import { useEffect } from 'react'
+import { apiUrl } from "../../utils/api";
+
+type Deposit = {
+    id: string 
+    user_id: string
+    address: string
+    danger_items: boolean
+    status: string
+    created_at: Date
+}
 
 export function Points() {
-    const [ points, setPoints ] = useState<string[]>(['Rua Brasil', 'Rua Argentina', 'Rua Chile'])
+    const [ points, setPoints ] = useState<Deposit[]>([])
+
+    function handleDone() {
+        Alert.alert('Coleta', 'A coleta desse lixo já foi realizada?', [
+            {
+                text: 'Sim',
+            },
+            {
+                text: 'Não',
+            }
+        ])
+    }
+
+    async function getDeposits() {
+        const response = await fetch(`${apiUrl}/gathering`) 
+        const data = await response.json()
+
+        setPoints(data)
+    }
+
+    useEffect(() => {
+        getDeposits()
+    }, [])
 
     return (
         <Container>
@@ -27,10 +60,11 @@ export function Points() {
 
             <FlatList 
                 data={points}
-                keyExtractor={item => item}
+                keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <AddressCard 
-                        address={item}
+                        address={item.address}
+                        idToDone={item.id}
                     />
                 )}
                 style={{ marginTop: 12 }}

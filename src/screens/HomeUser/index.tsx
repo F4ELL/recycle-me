@@ -6,9 +6,11 @@ import { SubHighlight } from "../../components/SubHighlight";
 import { Logout } from "../../components/Logout";
 import { LocationButton } from "../../components/LocationButton";
 import { InfoCard } from "../../components/InfoCard";
-import { Modal } from 'react-native'
+import { Alert, Modal } from 'react-native'
 import { useState } from 'react'
 import { ModalItem } from '../../components/ModalItem';
+import * as Location from 'expo-location'
+import { apiUrl } from '../../utils/api';
 
 export function HomeUser() {
     const [ modalVisible, setModalVisible ] = useState(false)

@@ -2,7 +2,6 @@ import { Header } from "../../components/Header";
 import { SubHighlight } from "../../components/SubHighlight";
 import { Highlight } from "../../components/Highlight";
 import { Container } from "./styles";
-import { Logout } from "../../components/Logout";
 import { Record } from "../../components/Record";
 
 export function StatisticsCollector() {

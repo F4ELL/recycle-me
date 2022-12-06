@@ -1,0 +1,1 @@
+export const apiUrl = 'https://453a-177-191-107-100.sa.ngrok.io'

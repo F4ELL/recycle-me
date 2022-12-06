@@ -1,23 +1,26 @@
 import { useNavigation } from '@react-navigation/native'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Alert } from 'react-native';
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { Highlight } from '../../components/Highlight';
 import { Input } from '../../components/Input';
+import { UserContext } from '../../contexts/auth';
+import { apiUrl } from '../../utils/api';
 import { Container, SignUpButton, SignUpText } from './styles';
 
 export function Login() {
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
+  const { setUser } = useContext(UserContext)
 
   const navigation = useNavigation()
 
-  function handleSignUp() {
+  function handleToSignUp() {
     navigation.navigate('signup')
   }
 
-  function handleNewUser() {
+  function handleToOccupation() {
     navigation.navigate('occupation')
   }
 
@@ -26,12 +29,30 @@ export function Login() {
     setPassword('')
   }
 
-  function handleLogin() {
+  async function handleLogin() {
     if(email.length === 0 || password.length === 0) {
       Alert.alert('Preencha todos os campos!')
     } else {
-      handleNewUser()
-      cleanInputs()
+      
+      try {
+        const response = await fetch(`${apiUrl}/login`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email, password })
+        })
+
+        const data = await response.json()
+        setUser(data)
+
+        handleToOccupation()
+        cleanInputs()
+
+      } catch(error) {
+        Alert.alert('Usuário não encontrado!')
+      }
     }
   }
 
@@ -65,7 +86,7 @@ export function Login() {
       />
 
       <SignUpButton
-        onPress={handleSignUp}
+        onPress={handleToSignUp}
       >
         <SignUpText>
           Ainda não possui uma conta?  Cadastre-se

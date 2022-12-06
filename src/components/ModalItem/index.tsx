@@ -1,10 +1,13 @@
 import { Button } from "../Button";
 import { SubHighlight } from "../SubHighlight";
 import { Container, ModalButtonsArea, TextWarning } from "./styles";
-import { TouchableOpacityProps } from 'react-native'
+import { Alert, TouchableOpacityProps } from 'react-native'
 import { CloseButton } from "../CloseButton";
 import { ModalButton } from "../ModalButton";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { apiUrl } from "../../utils/api";
+import { getLocationUser } from '../../utils/location'
+import { UserContext } from "../../contexts/auth";
 
 type Props = TouchableOpacityProps & {
     toogleModal: () => void
@@ -12,10 +15,40 @@ type Props = TouchableOpacityProps & {
 
 export function ModalItem({ toogleModal, ...rest }: Props) {
     const [ type, setType ] = useState('chill')
+    const { user } = useContext(UserContext)
+
+    async function sendLocation() {
+        try {
+            const response = await fetch(`${apiUrl}/deposit`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ user_id: user?.id, address: user?.address, danger_items: type === 'danger' })
+            })
+
+            const data = await response.json()
+            console.log(data)
+
+            Alert.alert('Localização enviada com sucesso! Em alguns minutos seu lixo será coletado.')
+            hiddenModal()
+        } catch(error) {
+            console.log(error)
+        }
+    }
 
     function hiddenModal() {
         toogleModal()
     }
+
+    function getPositionUser() {
+        getLocationUser()
+    }
+
+    useEffect(() => {
+        getPositionUser()
+    }, [])
 
     return (
         <Container>
@@ -51,7 +84,7 @@ export function ModalItem({ toogleModal, ...rest }: Props) {
 
             <Button 
                 title="Enviar localização"
-                onPress={hiddenModal}
+                onPress={sendLocation}
             />
         </Container>
     )
