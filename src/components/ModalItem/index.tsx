@@ -9,11 +9,11 @@ import { apiUrl } from "../../utils/api";
 import { getLocationUser } from '../../utils/location'
 import { UserContext } from "../../contexts/auth";
 
-type Props = TouchableOpacityProps & {
+type Props = {
     toogleModal: () => void
 }
 
-export function ModalItem({ toogleModal, ...rest }: Props) {
+export function ModalItem({ toogleModal }: Props) {
     const [ type, setType ] = useState('chill')
     const { user } = useContext(UserContext)
 

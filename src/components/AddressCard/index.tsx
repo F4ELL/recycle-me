@@ -20,25 +20,29 @@ export function AddressCard({ address, idToDone, danger, setPoints }: Props) {
             },
             {
                 text: 'Sim',
-                onPress: () => setDepositAsDone()
+                onPress: () => handleMarkAsDone()
             }
         ])
     }
-
     
-    async function setDepositAsDone() {
-        const response = await fetch(`${apiUrl}/gathering`, {
+    function markAsDone(id: string) {
+
+        return fetch(`${apiUrl}/gathering`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ id: idToDone })
+            body: JSON.stringify({ id })
         })
+    }
 
-        const data = await response.json()
-        setPoints(data)
-        console.log(data)
+    function handleMarkAsDone() {
+        markAsDone(idToDone)
+        .then(response => response.json())
+        .then(data => data)
+
+        Alert.alert('Recolhido!', 'Lixo recolhido.')
     }
 
     return (

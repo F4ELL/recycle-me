@@ -54,11 +54,12 @@ export function SignUp() {
             .then(response => response.json())
             .then(data => { 
                 if(data.status === 400) {
-                    Alert.alert('Usuário já existe!')
+                    Alert.alert('Email já cadastrado!')
                     return
                 }
                 
                 setUser(data.user)
+                Alert.alert('Cadastro concluído com sucesso!')
                 navigation.navigate('occupation')
              })
         }
