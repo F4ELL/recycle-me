@@ -68,7 +68,7 @@ export function Login() {
                 
                 setUser(data.user)
                 navigation.navigate('occupation')
-             })
+            })
         }
   }
 

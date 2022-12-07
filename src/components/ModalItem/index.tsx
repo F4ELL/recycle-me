@@ -17,9 +17,17 @@ export function ModalItem({ toogleModal, ...rest }: Props) {
     const [ type, setType ] = useState('chill')
     const { user } = useContext(UserContext)
 
+    function hiddenModal() {
+        toogleModal()
+    }
+
+    function getPositionUser() {
+        getLocationUser()
+    }
+
     function sendLocation() {
         
-        return fetch(`${apiUrl}/register`, {
+        return fetch(`${apiUrl}/deposit`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -27,35 +35,15 @@ export function ModalItem({ toogleModal, ...rest }: Props) {
             },
             body: JSON.stringify({ user_id: user?.id, address: user?.address, danger_items: type === 'danger' })
         })
-
-
-
-        /* try {
-            const response = await fetch(`${apiUrl}/deposit`, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ user_id: user?.id, address: user?.address, danger_items: type === 'danger' })
-            })
-
-            const data = await response.json()
-            console.log(data)
-
-            Alert.alert('Localização enviada com sucesso! Em alguns minutos seu lixo será coletado.')
-            hiddenModal()
-        } catch(error) {
-            console.log(error)
-        } */
     }
 
-    function hiddenModal() {
-        toogleModal()
-    }
+    function handleSendLocation() {
+        sendLocation()
+        .then(response => response.json())
+        .then(data => data)
 
-    function getPositionUser() {
-        getLocationUser()
+        Alert.alert('Sucesso!', 'Aguarde que em instantes seu lixo será coletado.')
+        hiddenModal()
     }
 
     useEffect(() => {
@@ -96,7 +84,7 @@ export function ModalItem({ toogleModal, ...rest }: Props) {
 
             <Button 
                 title="Enviar localização"
-                onPress={sendLocation}
+                onPress={handleSendLocation}
             />
         </Container>
     )
