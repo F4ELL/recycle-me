@@ -25,12 +25,6 @@ export function StatisticsCollector() {
                 subtitle='coletas de lixo reciclável'
                 style={{ marginTop: 12 }}
             />
-
-            <Record 
-                title='5'
-                subtitle='mais coletas de lixo reciclável em um dia'
-                style={{ marginTop: 12 }}
-            />
         </Container>
     )
 }

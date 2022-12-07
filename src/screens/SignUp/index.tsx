@@ -9,10 +9,10 @@ import { User, UserContext } from "../../contexts/auth";
 import { apiUrl } from "../../utils/api";
 import { Container, Title, TitleArea } from "./styles";
 
-type UserWithPassword = User & { password?: string }
+export type UserWithPassword = User & { password?: string }
 
 export function SignUp() {
-    const [newUser, setNewUser] = useState<UserWithPassword>()
+    const [ newUser, setNewUser ] = useState<UserWithPassword>()
     const { setUser } = useContext(UserContext)
 
     const navigation = useNavigation()

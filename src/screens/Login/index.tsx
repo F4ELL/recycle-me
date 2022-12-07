@@ -7,11 +7,11 @@ import { Highlight } from '../../components/Highlight';
 import { Input } from '../../components/Input';
 import { UserContext } from '../../contexts/auth';
 import { apiUrl } from '../../utils/api';
+import { UserWithPassword } from '../SignUp';
 import { Container, SignUpButton, SignUpText } from './styles';
 
 export function Login() {
-  const [ email, setEmail ] = useState('')
-  const [ password, setPassword ] = useState('')
+  const [ loginUser, setLoginUser ] = useState<UserWithPassword>()
   const { setUser } = useContext(UserContext)
 
   const navigation = useNavigation()
@@ -24,36 +24,52 @@ export function Login() {
     navigation.navigate('occupation')
   }
 
-  function cleanInputs() {
-    setEmail('')
-    setPassword('')
+  function handleUser(key: string, value: string) {
+    setLoginUser({...loginUser, [key]: value})
   }
 
-  async function handleLogin() {
-    if(email.length === 0 || password.length === 0) {
-      Alert.alert('Preencha todos os campos!')
-    } else {
-      
-      try {
-        const response = await fetch(`${apiUrl}/login`, {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email, password })
-        })
+  function validation(user: UserWithPassword) {
+    if(user.email && user.password) {
+        return true
+    } 
 
-        const data = await response.json()
-        setUser(data)
+    return false
+  }
 
-        handleToOccupation()
-        cleanInputs()
+  function login(user: UserWithPassword) {
 
-      } catch(error) {
-        Alert.alert('Usuário não encontrado!')
-      }
-    }
+    return fetch(`${apiUrl}/login`, {
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email: user.email, password: user.password })
+    })
+
+  }
+
+  function handleLogin() {
+    const validate = validation(loginUser || {})
+
+        if (!validate) {
+            Alert.alert('Preencha todos os campos!')
+            return
+        }
+
+        if(loginUser) {
+            login(loginUser)
+            .then(response => response.json())
+            .then(data => { 
+                if(data.status === 404) {
+                    Alert.alert('Usuário não encontrado!')
+                    return
+                }
+                
+                setUser(data.user)
+                navigation.navigate('occupation')
+             })
+        }
   }
 
   return (
@@ -68,16 +84,16 @@ export function Login() {
       <Input 
         placeholder='Email'
         style={{marginBottom: 12}}
-        onChangeText={email => setEmail(email)}
-        value={email}
+        onChangeText={email => handleUser('email', email)}
+        value={loginUser?.email}
       />
       
       <Input 
         secureTextEntry
         placeholder='Password'
         style={{ marginBottom: 32 }}
-        onChangeText={password => setPassword(password)}
-        value={password}
+        onChangeText={password => handleUser('password', password)}
+        value={loginUser?.password}
       />
       
       <Button 

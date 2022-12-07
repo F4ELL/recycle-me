@@ -17,8 +17,20 @@ export function ModalItem({ toogleModal, ...rest }: Props) {
     const [ type, setType ] = useState('chill')
     const { user } = useContext(UserContext)
 
-    async function sendLocation() {
-        try {
+    function sendLocation() {
+        
+        return fetch(`${apiUrl}/register`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ user_id: user?.id, address: user?.address, danger_items: type === 'danger' })
+        })
+
+
+
+        /* try {
             const response = await fetch(`${apiUrl}/deposit`, {
                 method: 'POST',
                 headers: {
@@ -35,7 +47,7 @@ export function ModalItem({ toogleModal, ...rest }: Props) {
             hiddenModal()
         } catch(error) {
             console.log(error)
-        }
+        } */
     }
 
     function hiddenModal() {
