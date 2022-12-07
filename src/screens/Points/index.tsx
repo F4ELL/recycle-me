@@ -4,7 +4,7 @@ import { Header } from "../../components/Header";
 import { Highlight } from "../../components/Highlight";
 import { SubHighlight } from "../../components/SubHighlight";
 import { Container } from "./styles";
-import { Alert, FlatList } from 'react-native'
+import { FlatList } from 'react-native'
 import { EmptyList } from "../../components/EmptyList";
 import { useEffect } from 'react'
 import { apiUrl } from "../../utils/api";
@@ -55,7 +55,6 @@ export function Points() {
                         address={item.address}
                         idToDone={item.id}
                         danger={item.danger_items}
-                        setPoints={setPoints}
                     />
                 )}
                 style={{ marginTop: 12 }}

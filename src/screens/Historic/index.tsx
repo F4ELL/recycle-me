@@ -4,11 +4,27 @@ import { HistoricItem } from "../../components/HistoricItem";
 import { SubHighlight } from "../../components/SubHighlight";
 import { Container } from "./styles";
 import { FlatList } from 'react-native'
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { EmptyList } from "../../components/EmptyList";
+import { UserContext } from "../../contexts/auth";
+import { apiUrl } from "../../utils/api";
+import { Deposit } from "../Points";
+import { formatDateString } from "../../utils/formatDate";
 
 export function Historic() {
-    const [ dates, setDates ] = useState<string[]>(['01/11/2022', '16/11/2022'])
+    const [ dates, setDates ] = useState<Deposit[]>([])
+    const { user } = useContext(UserContext)
+
+    async function loadDeposits() {
+        const response = await fetch(`${apiUrl}/gathering`) 
+        const data = await response.json()
+
+        setDates(data)
+    }
+
+    useEffect(() => {
+        loadDeposits()
+    }, [dates])
 
     return (
         <Container>
@@ -27,10 +43,10 @@ export function Historic() {
 
             <FlatList 
                 data={dates}
-                keyExtractor={item => item}
+                keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <HistoricItem 
-                        title={item}
+                        title={item.created_at.toString()}
                     />
                 )}
                 style={{ marginTop: 12 }}

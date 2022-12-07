@@ -1,3 +1,5 @@
 export function formatDateString(date: Date) {
-    return date.toLocaleDateString('pt-BR')
+    const formatDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
+
+    return formatDate
 }
