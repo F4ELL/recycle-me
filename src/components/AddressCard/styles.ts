@@ -22,9 +22,13 @@ export const Address = styled.Text`
     color: ${({ theme }) => theme.COLORS.GRAY_200};
 `
 
-export const Icon = styled(MaterialIcons).attrs(({ theme }) => ({
+type IconProps = {
+    colorIcon: boolean
+}
+
+export const Icon = styled(MaterialIcons).attrs<IconProps>(({ theme, colorIcon }) => ({
     size: 24,
-    color: theme.COLORS.WHITE
+    color: colorIcon ? theme.COLORS.RED : theme.COLORS.WHITE
 }))`
     margin-left: 16px;
     margin-right: 8px;

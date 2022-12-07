@@ -1,44 +1,66 @@
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Alert } from "react-native";
 import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
 import { Highlight } from "../../components/Highlight";
 import { Input } from "../../components/Input";
+import { User, UserContext } from "../../contexts/auth";
 import { apiUrl } from "../../utils/api";
 import { Container, Title, TitleArea } from "./styles";
 
+type UserWithPassword = User & { password?: string }
+
 export function SignUp() {
-    const [name, setName] = useState('')
-    const [address, setAddress] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [newUser, setNewUser] = useState<UserWithPassword>()
+    const { setUser } = useContext(UserContext)
 
     const navigation = useNavigation()
 
-    async function handleSignUp() {
-        if (name.length === 0 || address.length === 0 || email.length === 0 || password.length === 0) {
+    function handleUser(key: string, value: string) {
+        setNewUser({...newUser, [key]: value})
+    }
+
+    function validation(user: UserWithPassword) {
+        if(user.name && user.address && user.email && user.password) {
+            return true
+        } 
+    
+        return false
+    }
+
+    function register(user: UserWithPassword) {
+
+        return fetch(`${apiUrl}/register`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: user.name, address: user.address, email: user.email, password: user.password })
+        })
+    }
+
+    function handleSignUp() {
+        const validate = validation(newUser || {})
+
+        if (!validate) {
             Alert.alert('Preencha todos os campos!')
-        } else {
-            try {
-                const response = await fetch(`${apiUrl}/register`, {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ name, address, email, password })
-                })
+            return
+        }
 
-                const data = await response.json()
-                console.log(data)
-
-                Alert.alert('Usuário cadastrado com sucesso!')
-                navigation.navigate('login')
-
-            } catch(error) {
-                console.log(error)
-            }
+        if(newUser) {
+            register(newUser)
+            .then(response => response.json())
+            .then(data => { 
+                if(data.status === 400) {
+                    Alert.alert('Usuário já existe!')
+                    return
+                }
+                
+                setUser(data.user)
+                navigation.navigate('occupation')
+             })
         }
     }
 
@@ -64,30 +86,30 @@ export function SignUp() {
             <Input
                 placeholder='Nome'
                 style={{ marginBottom: 12 }}
-                onChangeText={name => setName(name)}
-                value={name}
+                onChangeText={name => handleUser('name', name)}
+                value={newUser?.name}
             />
 
             <Input
                 placeholder='Endereço'
                 style={{ marginBottom: 12 }}
-                onChangeText={address => setAddress(address)}
-                value={address}
+                onChangeText={address => handleUser('address', address)}
+                value={newUser?.address}
             />
 
             <Input
                 placeholder='Email'
                 style={{ marginBottom: 12 }}
-                onChangeText={email => setEmail(email)}
-                value={email}
+                onChangeText={email => handleUser('email', email)}
+                value={newUser?.email}
             />
 
             <Input
                 secureTextEntry
                 placeholder='Password'
                 style={{ marginBottom: 12 }}
-                onChangeText={password => setPassword(password)}
-                value={password}
+                onChangeText={password => handleUser('password', password)}
+                value={newUser?.password}
             />
 
             <Button

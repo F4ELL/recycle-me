@@ -9,7 +9,7 @@ import { EmptyList } from "../../components/EmptyList";
 import { useEffect } from 'react'
 import { apiUrl } from "../../utils/api";
 
-type Deposit = {
+export type Deposit = {
     id: string 
     user_id: string
     address: string
@@ -21,17 +21,6 @@ type Deposit = {
 export function Points() {
     const [ points, setPoints ] = useState<Deposit[]>([])
 
-    function handleDone() {
-        Alert.alert('Coleta', 'A coleta desse lixo já foi realizada?', [
-            {
-                text: 'Sim',
-            },
-            {
-                text: 'Não',
-            }
-        ])
-    }
-
     async function getDeposits() {
         const response = await fetch(`${apiUrl}/gathering`) 
         const data = await response.json()
@@ -41,7 +30,7 @@ export function Points() {
 
     useEffect(() => {
         getDeposits()
-    }, [])
+    }, [points])
 
     return (
         <Container>
@@ -65,6 +54,8 @@ export function Points() {
                     <AddressCard 
                         address={item.address}
                         idToDone={item.id}
+                        danger={item.danger_items}
+                        setPoints={setPoints}
                     />
                 )}
                 style={{ marginTop: 12 }}

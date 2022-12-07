@@ -1,10 +1,10 @@
 import { Children, createContext, ReactNode, useState } from "react"
 
-type User = {
-    id: string
-    name: string
-    email: string
-    address: string
+export type User = {
+    id?: string
+    name?: string
+    email?: string
+    address?: string
 }
 
 type UserContextType = {
